@@ -21,9 +21,10 @@ RUN useradd -m -s /bin/bash devuser && \
 USER devuser
 WORKDIR /home/devuser
 
-# Copy setup scripts from host to container and make them executable
+# Copy setup scripts and system scripts from host to container and make them executable
 COPY --chown=devuser:devuser setup-scripts/ ./setup-scripts/
-RUN chmod +x ./setup-scripts/*.sh
+COPY --chown=devuser:devuser system-scripts/ ./system-scripts/
+RUN chmod +x ./setup-scripts/*.sh ./system-scripts/*.sh
 
 # Run the main setup script when container starts
 CMD ["./setup-scripts/setup.sh"]

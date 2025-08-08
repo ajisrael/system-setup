@@ -23,4 +23,7 @@ echo "🛠️  Installing development tools..."
 echo "🖥️ Setting up shell customizations..."
 ./setup-scripts/setup-shell.sh
 
+echo "⚙️ Installing system utilities..."
+./setup-scripts/install-system-utils.sh
+
 echo "✅ Development environment setup complete!"

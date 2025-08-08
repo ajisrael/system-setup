@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # search for project directory
-selected=$(find ~ ~/work ~/learning -mindepth 2 -maxdepth 2 -type d | fzf)
+selected=$(find ~ ~/work ~/learning -mindepth 1 -maxdepth 2 -type d | fzf)
 
 # if we did not select a directory then exit
 if [[ -z $selected ]]; then
