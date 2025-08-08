@@ -21,11 +21,13 @@ RUN useradd -m -s /bin/bash devuser && \
 USER devuser
 WORKDIR /home/devuser
 
-# Copy setup scripts and system scripts from host to container and make them executable
-COPY --chown=devuser:devuser setup-scripts/ ./setup-scripts/
-COPY --chown=devuser:devuser system-scripts/ ./system-scripts/
-RUN chmod +x ./setup-scripts/*.sh ./system-scripts/*.sh
+# Set the repository URL (replace with your actual repo URL)
+ARG REPO_URL=https://github.com/yourusername/system-setup.git
+
+# Clone the repository and make scripts executable
+RUN git clone ${REPO_URL} system-setup && \
+    chmod +x system-setup/setup-scripts/*.sh system-setup/system-scripts/*.sh
 
 # Run the main setup script when container starts
-CMD ["./setup-scripts/setup.sh"]
+CMD ["./system-setup/setup-scripts/setup.sh"]
 
